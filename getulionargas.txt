@@ -1,0 +1,32 @@
+
+CREATE DATABASE Trabalho;
+USE Trabalho;
+
+CREATE TABLE funcionario (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(50) NOT NULL,
+    agencia VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE departamento (
+    idDepartamento INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE cargo (
+    idCargo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    idDepartamento INT,
+    FOREIGN KEY (idDepartamento) REFERENCES departamento(idDepartamento)
+);
+
+SELECT id FROM funcionario;
+SELECT nome, sobrenome FROM funcionario;
+SELECT idDepartamento FROM departamento;
+SELECT nome FROM departamento;
+SELECT idCargo FROM cargo;
+SELECT nome FROM cargo;
+SELECT * FROM funcionario;
+
+drop database empresa 
