@@ -6,12 +6,12 @@ const port = 3000;
 
 let Empresa = [];
 
-app.post('/inserir', (req, res) => {
-    const { nome, sobrenome, agencia} = req.body;
-    // memória volátil(apenas na memória) => veiculos.push({ id, marca, modelo, ano, cor, proprietario });
+app.post('/inserir/funcionario', (req, res) => {
+    const { nome, sobrenome, cargo} = req.body;
+   
     db.query(
-        `INSERT INTO pessoa (nome, sobrenome, agencia) VALUES (?, ?, ?, ?, ?)`,
-        [nome, sobrenome, agencia],
+        `INSERT INTO funcionario (nome, sobrenome, cargo) VALUES (?, ?, ?)`,
+        [nome, sobrenome, cargo],
         function (err, results, fields) {
           if (err) {
             console.error('Erro na inserção:', err);
@@ -21,7 +21,26 @@ app.post('/inserir', (req, res) => {
           console.log(fields);
         }
       );
-    res.send(`Pessoa inserida!\n\nnome: ${nome} \nsobrenome: ${sobrenome} \nagencia: ${agencia}`);
+    res.send(`funcionario inserido!\n\nnome: ${nome} \nsobrenome: ${sobrenome} \ncargo: ${cargo}`);
+});
+
+
+app.post('/inserir/cargo', (req, res) => {
+    const {  cargo , dep} = req.body;
+   
+    db.query(
+        `INSERT INTO cargo ( cargo, dep) VALUES (?, ?)`,
+        [ cargo ,dep],
+        function (err, results, fields) {
+          if (err) {
+            console.error('Erro na inserção:', err);
+            return;
+          }
+          console.log(results);
+          console.log(fields);
+        }
+      );
+    res.send(`cargo inserido! \ndepartamento: ${dep} \ncargo: ${cargo}`);
 });
 
 app.get('/funcionario', (req, res) => {
@@ -228,6 +247,10 @@ app.post('/cadastrar/departamento', (req, res)=>{
     personlist.push({nome, departamento, id})
     res.send(`Usuário recebido!!${nome}, id recebido!!${id},Departamento recebido!!${departamento}`)
 })
+
+app.listen(port, () => {
+    console.log(`Server listening on  http://localhost:${port}`);
+});
 
 
 
