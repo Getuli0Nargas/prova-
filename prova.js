@@ -43,6 +43,62 @@ app.post('/inserir/cargo', (req, res) => {
     res.send(`cargo inserido! \ndepartamento: ${dep} \ncargo: ${cargo}`);
 });
 
+///pergunatr pro professor 
+app.post('/inserir/departamento', (req, res) => {
+    const {dep} = req.body;
+   
+    db.query(
+        `INSERT INTO departamento (dep) VALUES (?)`,
+        [dep],
+        function (err, results, fields) {
+          if (err) {
+            console.error('Erro na inserção:', err);
+            return;
+          }
+          console.log(results);
+          console.log(fields);
+        }
+      );
+    res.send(`departamento inserido! \ndepartamento: ${dep}`);
+});
+
+
+
+app.get('/departamento/:id', (req, res) => {
+    const {id} = req.params;
+    db.query(
+        `SELECT * FROM departamento where id = ?`,
+        [id],
+        function(err,results,fields){
+            if(err){
+                console.error('erro para puxar',err);
+                return res.status(500).json({error:'Erro para puxar'})
+            }
+            return res.json(results)
+        }
+    )
+});
+
+app.get('/funcionario/:id', (req, res) => {
+    const {id} = req.params;
+    db.query(
+        `SELECT * FROM funcionario where id = ?`,
+        [id],
+        function(err,results,fields){
+            if(err){
+                console.error('erro para puxar',err);
+                return res.status(500).json({error:'Erro para puxar'})
+            }
+            return res.json(results)
+        }
+    )
+});
+
+
+
+
+
+
 app.get('/funcionario', (req, res) => {
     db.query(
       `SELECT * FROM funcionario`,
