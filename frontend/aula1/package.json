@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "aula1",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.7.7",
-    "cors": "^2.8.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

@@ -20,14 +20,15 @@ function App() {
 
   // npm i axios
   async function RegisterNewVehicle(){
-    await axios.post("http://localhost:3000/cadastrar",{
+    await axios.post("http://localhost:3000/inserir",{
       marca, modelo, ano, cor, proprietario
 
     })
   }
 
   async function UpdateVehicle(){
-    await axios.update("http://localhost:3000/update")
+    await axios.put("http://localhost:3000/update")
+    marca, modelo, ano, cor, proprietario
   }
 
   function handleSubmit(e){
@@ -40,7 +41,7 @@ function App() {
   return (
     <>
       <div className="card">
-        <form onSubmit={() => {RegisterNewVehicle}}>
+        <form>
 
           <label htmlFor="proprietario">Proprietario</label>
           <br />
