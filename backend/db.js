@@ -5,7 +5,7 @@ host: 'localhost',
 user:'root',
 password: 'root',
 //n ter mudado o nome do bd
-database: 'empresa',
+database: 'aula',
 })
 
 connection.connect(err =>{
